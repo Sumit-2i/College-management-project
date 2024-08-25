@@ -1,0 +1,31 @@
+<!-- hod_template/add_course_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <!-- Include any CSS or JS files here -->
+</head>
+<body>
+    <h2>Add Course</h2>
+
+    <!-- Display messages (success or error) -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Course Form -->
+    <form method="POST" action="{% url 'add_course_save' %}">
+        {% csrf_token %}
+        <label for="course">Course Name:</label>
+        <input type="text" id="course" name="course" required>
+        <button type="submit">Add Course</button>
+    </form>
+</body>
+</html>

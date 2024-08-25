@@ -1,0 +1,37 @@
+<!-- hod_template/add_session_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Session</title>
+    <!-- Include any CSS or JS files here -->
+</head>
+<body>
+    <h2>Add Session Year</h2>
+
+    <!-- Display messages (success or error) -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Session Form -->
+    <form method="POST" action="{% url 'add_session_save' %}">
+        {% csrf_token %}
+        <div>
+            <label for="session_start_year">Session Start Year:</label>
+            <input type="date" id="session_start_year" name="session_start_year" required>
+        </div>
+        <div>
+            <label for="session_end_year">Session End Year:</label>
+            <input type="date" id="session_end_year" name="session_end_year" required>
+        </div>
+        <button type="submit">Add Session Year</button>
+    </form>
+</body>
+</html>
